@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>page 1</h1>
+  <hr>
+  <iframe src="http://localhost:3001" frameborder="1" id="iframe" width="300"></iframe>
+  <hr>
+  <button onclick="sendMessage()">发送</button>
+  <!-- <input type="text" val="jjjj" id ="input" /> -->
+  <script>
+    // window.title = 'im parent';
+    // document.domain = document.domain;
+
+    function sendMessage() {
+      // not work
+      // const iframe = document.getElementById('iframe').contentWindow; 
+      const iframe = document.getElementById('iframe');
+      iframe.contentWindow.postMessage({a: 1}, 'http://localhost:3001');
+    }
+
+    window.addEventListener('message', (e) => {
+      console.log('receive msg from: %s', e.origin, e.data);
+    })
+
+    //  onload="getChildData()"
+    function getChildData() {
+      console.log('child data:', window.childData);
+    }
+  </script>
+</body>
+</html>

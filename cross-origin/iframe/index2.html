@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>page 2</h1>
+  <button onclick="func()">获取page1标题</button>
+  <script>
+    // document.domain = document.domain;
+    // window.parent.childData = 'im child';
+    
+    function func() {
+      console.log('parent data:', window.parent.title);
+    }
+
+    window.addEventListener('message', (e) => {
+      if (e.origin === "http://localhost:3000") {
+        console.log('receive message', e.data);
+        e.source.postMessage({
+          a: 'hi 3000',
+          arr: [1,2,3],
+          date: new Date(),
+        }, e.origin);
+      }
+    })
+  </script>
+</body>
+</html>
