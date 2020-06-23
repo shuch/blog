@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reflow</title>
+  <style>
+    .box {
+      color: white;
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      background: lightblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="box1">1</div>
+  <div class="box" id="box2">2</div>
+  <div class="box" id="box3">3</div>
+  <div class="box" id="box4">4</div>
+  <div class="box" id="box5">5</div>
+  
+  <br>
+  <a href="https://gist.github.com/faressoft/36cdd64faae21ed22948b458e6bf04d5" target="_blank">参考</a>
+  <script>
+    // read then write triger layout
+    // 6 reflows(layout)
+    // var box1Height = document.getElementById('box1').clientHeight;
+    // document.getElementById('box1').style.height = box1Height + 10 + 'px';
+
+    // var box2Height = document.getElementById('box2').clientHeight;
+    // document.getElementById('box2').style.height = box2Height + 10 + 'px';
+
+    // var box3Height = document.getElementById('box3').clientHeight;
+    // document.getElementById('box3').style.height = box3Height + 10 + 'px';
+
+    // var box4Height = document.getElementById('box4').clientHeight;
+    // document.getElementById('box4').style.height = box4Height + 10 + 'px';
+
+    // var box5Height = document.getElementById('box5').clientHeight;
+    // document.getElementById('box5').style.height = box5Height + 10 + 'px';
+
+    // var box6Height = document.getElementById('box6').clientHeight;
+    // document.getElementById('box6').style.height = box6Height + 10 + 'px';
+
+    // 1 reflows
+    var box1Height = document.getElementById('box1').clientHeight;
+    var box2Height = document.getElementById('box2').clientHeight;
+    var box3Height = document.getElementById('box3').clientHeight;
+    var box4Height = document.getElementById('box4').clientHeight;
+    var box5Height = document.getElementById('box5').clientHeight;
+    var box6Height = document.getElementById('box6').clientHeight;
+
+    document.getElementById('box1').style.height = box1Height + 10 + 'px';
+    document.getElementById('box2').style.height = box2Height + 10 + 'px';
+    document.getElementById('box3').style.height = box3Height + 10 + 'px';
+    document.getElementById('box4').style.height = box4Height + 10 + 'px';
+    document.getElementById('box5').style.height = box5Height + 10 + 'px';
+    document.getElementById('box6').style.height = box6Height + 10 + 'px';
+  </script>
+</body>
+</html>
