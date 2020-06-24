@@ -10,12 +10,15 @@
   <hr>
   <iframe src="http://localhost:3001" frameborder="1" id="iframe" width="300"></iframe>
   <hr>
-  <button onclick="sendMessage()">发送</button>
+  <button onclick="sendMessage()">发送message</button>
+  <button onclick="changeHash()">修改hash</button>
   <!-- <input type="text" val="jjjj" id ="input" /> -->
   <script>
+    // 1.document.domain
     // window.title = 'im parent';
     // document.domain = document.domain;
 
+    // 2.postmessage
     function sendMessage() {
       // not work
       // const iframe = document.getElementById('iframe').contentWindow; 
@@ -31,6 +34,25 @@
     function getChildData() {
       console.log('child data:', window.childData);
     }
+
+    // 3.hash
+    function changeHash() {
+      const iframe = document.getElementById('iframe');
+      iframe.src = 'http://localhost:3001' + '#' + JSON.stringify({ a: 1});
+    }
+
+    window.addEventListener('hashchange' , (e)  => {
+      const hash = window.location.hash;
+      const data = decodeURIComponent(hash.split('#')[1]);
+      // console.log('hash', data);
+      console.log('hash from child: ', JSON.parse(data));
+      // window.parent.location.href = "http://localhost:3000" + "#data=" + data;
+    })
+
+    // 4.window.name
+    // window.addEventListener('load', (e) => {
+    //   console.log('window[name]', window.name);
+    // })
   </script>
 </body>
 </html>

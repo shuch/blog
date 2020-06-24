@@ -9,6 +9,7 @@
   <h1>page 2</h1>
   <button onclick="func()">获取page1标题</button>
   <script>
+    // 1.document.domain
     // document.domain = document.domain;
     // window.parent.childData = 'im child';
     
@@ -16,6 +17,7 @@
       console.log('parent data:', window.parent.title);
     }
 
+    // 2.postmessage
     window.addEventListener('message', (e) => {
       if (e.origin === "http://localhost:3000") {
         console.log('receive message', e.data);
@@ -26,6 +28,18 @@
         }, e.origin);
       }
     })
+
+    // 3. hash
+    window.addEventListener('hashchange' , (e)  => {
+      const hash = window.location.hash;
+      const data = decodeURIComponent(hash.split('#')[1]);
+      console.log('hash from parent: ', JSON.parse(data));
+      window.parent.location.href = "http://localhost:3000#" + data;
+    })
+
+    //4 window.name
+    window.name = JSON.stringify({ name: 1 });
+    window.location = 'http://localhost:3000/empty.html';
   </script>
 </body>
 </html>
