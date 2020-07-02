@@ -1,9 +1,7 @@
-// import count from './count';
-import { a } from './esm-export';
+import count from './count';
 
-// console.log('es-moudle', count);
-console.log('es-moudle', a);
+console.log('es-moudle', count);
 
 setTimeout(() => {
-  console.log('es-module after', a);
+  console.log('es-module after', count);
 }, 2000);
