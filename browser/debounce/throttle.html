@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      height: 1000px;
+    }
+  </style>
+</head>
+<body>
+  <h1>throttle</h1>
+  <script>
+    function throttle(fn, threshold) {
+      var startTime;
+      var timer;
+
+      return function() {
+        var curTime = +new Date();
+        clearTimeout(timer);
+        
+        /* 1 */
+        if (curTime - startTime >= threshold) {
+          fn.apply(this, arguments);
+          startTime = curTime;
+        } else {
+          /* 2 */
+          timer = setTimeout(function() {
+            fn.apply(this, arguments);
+            startTime = curTime;
+          }, threshold);
+        }
+      }
+    }
+
+    window.onscroll = throttle(() => console.log(1), 1000);
+    
+  </script>
+</body>
+</html>

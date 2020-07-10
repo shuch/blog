@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+  </head>
+  <body>
+    <h1 class="container">
+      mousemove count:
+      <span id="count">0</span>
+    </h1>
+    <script>
+      var count = 1;
+      var countDOM = document.getElementById("count");
+      var container = document.querySelector(".container");
+      // container.onmousemove = handle;
+      container.onmousemove = debounce(handle, 1000);
+
+      function handle(event) {
+        countDOM.innerText = count++;
+        console.log("event", event);
+        return event.pageX;
+      }
+
+      function debounce(fn, delay) {
+        var timer;
+        // 本质是onmousemove函数
+        return function() {
+          // window.settimeout 内部this指向window
+          // 缓存函数调用时的this
+          var context = this;
+          // 函数接收的参数，event事件
+          var args = arguments;
+
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            fn.apply(context, args);
+          }, delay);
+        };
+      }
+    </script>
+  </body>
+</html>
